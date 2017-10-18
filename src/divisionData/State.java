@@ -2,45 +2,79 @@
  * Created by Classdumper, User Peter Heusch
  * Creation Date: 15.10.2017 22:12:56
  */
-
 package divisionData;
 
-import de.hft_stuttgart.unittest.loader.Skeleton;
+import java.util.Arrays;
+import java.util.Objects;
 
-@Skeleton
-public class State {
-    static {
-        System.err.println("Please call injectClass(\"divisionData.State\"), you've imported a skeleton");
-    }
+public class State
+{
 
     public Club upper[];
     public Club lower[];
     public Club joker;
     public Club antij;
 
-    public State() {
-        // Roughly 1 lines of implementation
-        throw new UnsupportedOperationException("Not yet implemented");
+    @Override
+    public boolean equals(Object obj)
+    {
+        if (this == obj)
+        {
+            return true;
+        }
+        if (obj == null)
+        {
+            return false;
+        }
+        if (getClass() != obj.getClass())
+        {
+            return false;
+        }
+        final State other = (State) obj;
+        if (!Arrays.deepEquals(this.upper, other.upper))
+        {
+            return false;
+        }
+        if (!Arrays.deepEquals(this.lower, other.lower))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.joker, other.joker))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.antij, other.antij))
+        {
+            return false;
+        }
+        return true;
     }
 
-    public boolean equals(Object o) {
-        // Roughly 4 lines of implementation
-        throw new UnsupportedOperationException("Not yet implemented");
+
+    public String toString()
+    {
+        return "State{"
+                + "upper=" + Arrays.toString(this.upper) + ", "
+                + "lower=" + Arrays.toString(this.lower) + ", "
+                + "joker=" + this.joker.toString() + ", "
+                + "antij=" + this.antij.toString()
+                + "}";
     }
 
-    public String toString() {
-        // Roughly 1 lines of implementation
-        throw new UnsupportedOperationException("Not yet implemented");
+    public String toString(boolean isOdd)
+    {
+        return "no time left";
     }
 
-    public String toString(boolean isOdd) {
-        // Roughly 5 lines of implementation
-        throw new UnsupportedOperationException("Not yet implemented");
-    }
-
-    private Club[] reverse(Club[] orig) {
+    private Club[] reverse(Club[] orig)
+    {
         // Roughly 3 lines of implementation
-        throw new UnsupportedOperationException("Not yet implemented");
+        Club[] reverse = new Club[orig.length];
+        for (int i=0; i < orig.length; i++)
+        {
+            reverse[reverse.length -1 -i] = orig[i];
+        }
+        return reverse;
     }
-}
 
+}
