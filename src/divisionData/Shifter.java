@@ -31,7 +31,7 @@ public class Shifter
         Club fallout = state[0];
         for(int i=0; i < state.length -1; i++)
         {
-            state[0] = state[i+1];
+            state[i] = state[i+1];
         }
         state[state.length -1] = newClub;
 
