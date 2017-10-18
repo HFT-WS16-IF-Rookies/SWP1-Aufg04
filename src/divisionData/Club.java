@@ -7,13 +7,13 @@ package divisionData;
 import de.hft_stuttgart.unittest.loader.Skeleton;
 import java.util.Objects;
 
-@Skeleton
+//@Skeleton
 public class Club {
-
+/*
     static {
         System.err.println("Please call injectClass(\"divisionData.Club\"), you've imported a skeleton");
     }
-
+*/
     private final int number;
     private final String name;
 
@@ -22,6 +22,7 @@ public class Club {
         this.name = name;
     }
 
+    @Override
     public boolean equals(Object obj) {
         if (!(obj instanceof Club)) {
             return false;
@@ -43,9 +44,13 @@ public class Club {
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 97 * hash + this.number;
-        hash = 97 * hash + Objects.hashCode(this.name);
+        int p1 = 5;
+        int p2 = 37;
+        int hash = 0;
+
+        hash = (int) Math.pow(p2, 2) * p1;
+        hash += p2 * Objects.hashCode(this.number);
+        hash += p2 * Objects.hashCode(this.name);
         return hash;
     }
 
