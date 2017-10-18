@@ -5,6 +5,8 @@
 
 package divisionData;
 
+import java.util.Objects;
+
 public class Game {
 
     private final Club home;
@@ -33,12 +35,12 @@ public class Game {
         }
 
         Game temp = (Game) obj;
-        if (!(this.home == temp.home))
+        if (!(this.home.equals(temp.home)))
         {
             return false;
         }
 
-        if (!(this.guest == temp.guest))
+        if (!(this.guest.equals(temp.guest)))
         {
             return false;
         }
@@ -46,6 +48,7 @@ public class Game {
         return true;
     }
 
+    @Override
     public String toString() {
         return "Game{"
                 + "home="
@@ -55,10 +58,27 @@ public class Game {
                 + "}";
     }
 
-    public int hashCode() {
-        // Roughly 2 lines of implementation
-        throw new UnsupportedOperationException("Not yet implemented");
+    @Override
+    public int hashCode()
+    {
+
+        int p1 = 7;
+        int p2 = 97;
+        int hash = 0;
+
+        hash = (int) Math.pow(p2, 2) * p1;
+        hash += p2 * Objects.hashCode(this.home);
+        hash += p2 * Objects.hashCode(this.guest);
+        return hash;
+
+        /*
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.home);
+        hash = 97 * hash + Objects.hashCode(this.guest);
+        return hash;
+        */
     }
+
 
     public Club getGuest() {
         return this.guest;
