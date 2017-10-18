@@ -4,36 +4,33 @@
  */
 package divisionData;
 
-import de.hft_stuttgart.unittest.loader.Skeleton;
+import java.util.Arrays;
 
-@Skeleton
-public final class Filler {
-
-    static {
-        System.err.println("Please call injectClass(\"divisionData.Filler\"), you've imported a skeleton");
-    }
-
-    public Filler() {
-
-    }
-
-    public static State fill(Club[] clubs) {
-        State s = new State();
-        int j = 0;
-        int k = 0;
-        for (int i = 0; i < clubs.length; i++) {
-            if (i == clubs.length - 1) {
-                s.joker = clubs[i];
-            }else if (i == clubs.length - 2) {
-                s.antij = clubs[i];
-            }else if (i > 0 && i <= clubs.length / 2 - 1) {
-                s.lower[j] = clubs[i];
-                j++;
-            }else if (i >= clubs.length / 2 && i > clubs.length - 2) {
-                s.upper[k] = clubs[i];
-                k++;
-            }
+public final class Filler
+{
+    public static State fill(Club[] clubs)
+    {
+        if (clubs.length < 4)
+        {
+            throw new IllegalArgumentException("Number of clubs must be even and larger or equal to 4");
         }
+
+        State s = new State();
+
+        s.antij = clubs[clubs.length -2];
+        s.joker = clubs[clubs.length -1];
+
+        s.upper = new Club[((clubs.length -2) / 2)];
+        s.lower = new Club[s.upper.length];
+
+        int j = clubs.length -3;
+        for (int i=0; i < s.upper.length; i++)
+        {
+            s.upper[i] = clubs[i];
+            s.lower[i] = clubs[j--];
+        }
+
         return s;
     }
+
 }
